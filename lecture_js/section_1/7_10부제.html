@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(day, arr) {
+        return arr.filter((val) => val % 10 === day).length;
+      }
+
+      let arr = [25, 23, 11, 47, 53, 17, 33];
+      console.log(solution(3, arr));
+      arr = [12, 20, 54, 30, 87, 91, 30];
+      console.log(solution(2, arr));
+    </script>
+  </body>
+</html>

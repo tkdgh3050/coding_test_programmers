@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        for (let a = 0; a < arr.length - 1; a++) {
+          for (let b = a + 1; b < arr.length; b++) {
+            const newArr = arr.filter((_, idx) => idx !== a && idx !== b);
+            if (newArr.reduce((acc, cur) => acc + cur, 0) === 100) {
+              return newArr;
+            }
+          }
+        }
+      }
+
+      let arr = [22, 7, 21, 19, 10, 15, 25, 8, 13];
+      console.log(
+        solution(arr),
+        solution(arr).reduce((a, c) => a + c, 0)
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        const sSet = new Set();
+        const answer = [];
+        str.forEach((val) => {
+          if (sSet.has(val)) return;
+          sSet.add(val);
+          answer.push(val);
+        });
+        return answer;
+      }
+      let str = ["good", "time", "good", "time", "student"];
+      console.log(solution(str));
+    </script>
+  </body>
+</html>

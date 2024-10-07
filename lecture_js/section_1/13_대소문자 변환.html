@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        return [...s]
+          .map((val) =>
+            val.charCodeAt() >= "a".charCodeAt() &&
+            val.charCodeAt() <= "z".charCodeAt()
+              ? val.toUpperCase()
+              : val.toLowerCase()
+          )
+          .join("");
+      }
+
+      console.log(solution("StuDY"));
+    </script>
+  </body>
+</html>
