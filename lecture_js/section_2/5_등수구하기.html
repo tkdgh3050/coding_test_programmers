@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        const sortedArr = [...arr].sort((a, b) => b - a);
+        return arr.map((val) => sortedArr.indexOf(val) + 1);
+      }
+
+      let arr = [87, 89, 87, 100, 76];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

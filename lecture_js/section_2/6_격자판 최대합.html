@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let max = Number.MIN_SAFE_INTEGER;
+        const n = arr.length;
+        for (let x = 0; x < n; x++) {
+          let hor = 0;
+          let col = 0;
+          for (let y = 0; y < n; y++) {
+            hor += arr[x][y];
+            col += arr[y][x];
+          }
+          max = Math.max(hor, col, max);
+        }
+
+        let left = 0;
+        let right = 0;
+        for (let x = 0; x < n; x++) {
+          left += arr[x][x];
+          right += arr[x][n - 1 - x];
+        }
+        max = Math.max(left, right, max);
+
+        return max;
+      }
+
+      let arr = [
+        [10, 13, 10, 12, 15],
+        [12, 39, 30, 23, 11],
+        [11, 25, 50, 53, 15],
+        [19, 27, 29, 37, 27],
+        [19, 13, 30, 13, 19],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
