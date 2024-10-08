@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // function solution(s, t) {
+      //   let answer = [];
+      //   const index = [];
+      //   const sArray = [...s];
+      //   for (let x = 0; x < sArray.length; x++) {
+      //     if (sArray[x] === t) index.push(x);
+      //   }
+      //   sArray.forEach((_, valIdx) => {
+      //     const len = index.map((idx) => Math.abs(idx - valIdx));
+      //     answer.push(Math.min(...len));
+      //   });
+      //   return answer;
+      // }
+
+      function solution(s, t) {
+        const sArray = [...s];
+        let answer = [];
+        let temp = Number.MAX_SAFE_INTEGER;
+        for (let char of sArray) {
+          if (char === t) {
+            temp = 0;
+          } else {
+            temp += 1;
+          }
+          answer.push(temp);
+        }
+        temp = Number.MAX_SAFE_INTEGER;
+        for (let x = sArray.length - 1; x >= 0; x--) {
+          if (sArray[x] === t) {
+            temp = 0;
+          } else {
+            temp += 1;
+          }
+          answer[x] = Math.min(answer[x], temp);
+        }
+        return answer;
+      }
+
+      let str = "teachermode";
+      console.log(solution(str, "e"));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = "YES";
+        const arr = [...s.toLowerCase()];
+        for (let x = 0; x < s.length / 2; x++) {
+          if (arr[x] !== arr[s.length - 1 - x]) {
+            answer = "NO";
+            break;
+          }
+        }
+        return answer;
+      }
+
+      let str = "gooaoG";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
