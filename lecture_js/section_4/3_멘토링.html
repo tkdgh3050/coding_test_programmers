@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(test) {
+        let answer = 0;
+        const studentCnt = test[0].length;
+        const comb = [];
+        for (let x = 1; x < studentCnt; x++) {
+          for (let y = x + 1; y <= studentCnt; y++) {
+            comb.push([x, y]);
+            comb.push([y, x]);
+          }
+        }
+        for (let [x, y] of comb) {
+          let flag = true;
+          for (let exam of test) {
+            if (exam.indexOf(x) > exam.indexOf(y)) {
+              flag = false;
+              break;
+            }
+          }
+          if (flag) answer += 1;
+        }
+        return answer;
+      }
+
+      let arr = [
+        [3, 4, 1, 2],
+        [4, 3, 2, 1],
+        [3, 1, 4, 2],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

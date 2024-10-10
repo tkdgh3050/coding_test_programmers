@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // function solution(m, product) {
+      //   // 전체 합친 거에서 큰 것부터 하나씩 빼보기
+      //   product.sort((a, b) => b[0] - a[0]);
+      //   product[0][0] /= 2;
+
+      //   let total = product.reduce((acc, cur) => acc + cur[0] + cur[1], 0);
+
+      //   const sumProduct = product
+      //     .map((val) => val[0] + val[1])
+      //     .sort((a, b) => b - a);
+      //   let answer = product.length;
+
+      //   if (m >= total) return answer;
+
+      //   for (let x = 0; x < sumProduct.length; x++) {
+      //     total -= sumProduct[x];
+      //     answer -= 1;
+      //     if (m >= total) break;
+      //   }
+
+      //   return answer;
+      // }
+
+      function solution(m, product) {
+        let answer = 0;
+
+        product.sort(
+          (a, b) => a.reduce((a, c) => a + c, 0) - b.reduce((a, c) => a + c, 0)
+        );
+
+        for (let sale = 0; sale < product.length; sale++) {
+          let saleMoney = m - product[sale][0] / 2 + product[sale][1];
+          let count = 1;
+          let sum = 0;
+          for (let x = 0; x < product.length; x++) {
+            if (x === sale) {
+              continue;
+            } else {
+              sum += product[x][0] + product[x][1];
+            }
+            if (sum > m) {
+              break;
+            }
+            count += 1;
+          }
+
+          if (answer < count) answer = count;
+        }
+
+        return answer;
+      }
+
+      let arr = [
+        [6, 6],
+        [2, 2],
+        [4, 3],
+        [4, 5],
+        [10, 3],
+      ];
+      console.log(solution(28, arr));
+    </script>
+  </body>
+</html>

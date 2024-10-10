@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, arr) {
+        let answer = Number.MIN_SAFE_INTEGER;
+        let maxSum = Number.MIN_SAFE_INTEGER;
+        arr.forEach((val) => {
+          const sumVal = sum(val);
+          if (sumVal >= maxSum) {
+            maxSum = sumVal;
+            answer = answer > val ? answer : val;
+          }
+        });
+
+        return answer;
+      }
+
+      function sum(num) {
+        const str = String(num);
+        let sum = 0;
+        for (let x of str) {
+          sum += Number(x);
+        }
+        return sum;
+      }
+
+      let arr = [128, 460, 603, 40, 521, 137, 123];
+      console.log(solution(7, arr));
+    </script>
+  </body>
+</html>
