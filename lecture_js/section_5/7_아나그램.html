@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(str1, str2) {
+        let aMap = new Map();
+
+        [...str1].forEach((val) => {
+          if (aMap.has(val)) {
+            aMap.set(val, aMap.get(val) + 1);
+          } else {
+            aMap.set(val, 1);
+          }
+        });
+
+        for (let char of b) {
+          if (!aMap.has(char)) return "NO";
+          if (aMap.get(char) < 1) return "NO";
+          aMap.get(char) === 1
+            ? aMap.delete(char)
+            : aMap.set(char, aMap.get(char) - 1);
+        }
+
+        return aMap.size > 0 ? "NO" : "YES";
+      }
+
+      let a = "AbaAeCe";
+      let b = "baeeACA";
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>

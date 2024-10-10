@@ -1,0 +1,105 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function isEqual(orgMap, comMap) {
+        if (orgMap.size !== comMap.size) return false;
+
+        for (let [val, cnt] of comMap.entries()) {
+          if (orgMap.get(val) !== cnt) return false;
+        }
+        return true;
+      }
+
+      function getMap(char) {
+        const orgMap = new Map();
+
+        [...char].forEach((val) => {
+          if (orgMap.has(val)) {
+            orgMap.set(val, orgMap.get(val) + 1);
+          } else {
+            orgMap.set(val, 1);
+          }
+        });
+
+        return orgMap;
+      }
+
+      function solution(s, t) {
+        let answer = 0;
+
+        const tMap = getMap(t);
+        const sMap = getMap(s.slice(0, t.length - 1));
+
+        for (let end = t.length - 1; end < s.length; end++) {
+          const addChar = s[end];
+          const delChar = s[end - t.length + 1];
+
+          if (sMap.has(addChar)) sMap.set(addChar, sMap.get(addChar) + 1);
+          else sMap.set(addChar, 1);
+
+          if (isEqual(tMap, sMap)) answer += 1;
+
+          if (sMap.get(delChar) > 1) sMap.set(delChar, sMap.get(delChar) - 1);
+          else sMap.delete(delChar);
+        }
+
+        return answer;
+      }
+
+      let a = "bacaAacba";
+      let b = "abc";
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
+<!-- <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function isEqual(orgMap, comMap) {
+        for (let [val, cnt] of comMap.entries()) {
+          if (orgMap.get(val) !== cnt) return false;
+        }
+        return true;
+      }
+
+      function getMap(char) {
+        const orgMap = new Map();
+
+        [...char].forEach((val) => {
+          if (orgMap.has(val)) {
+            orgMap.set(val, orgMap.get(val) + 1);
+          } else {
+            orgMap.set(val, 1);
+          }
+        });
+
+        return orgMap;
+      }
+
+      function solution(s, t) {
+        let answer = 0;
+
+        const tMap = getMap(t);
+
+        for (let start = 0; start <= s.length - t.length; start++) {
+          const test = s.slice(start, start + t.length);
+          if (isEqual(tMap, getMap(test))) answer += 1;
+        }
+
+        return answer;
+      }
+
+      let a = "bacaAacba";
+      let b = "abc";
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html> -->

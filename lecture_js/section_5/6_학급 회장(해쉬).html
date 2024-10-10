@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let hashMap = new Map();
+        [...s].forEach((val) => {
+          if (hashMap.has(val)) {
+            hashMap.set(val, hashMap.get(val) + 1);
+          } else {
+            hashMap.set(val, 1);
+          }
+        });
+
+        return [...hashMap].sort((a, b) => b[1] - a[1])[0][0];
+      }
+
+      let str = "BACBACCACCBDEDE";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
