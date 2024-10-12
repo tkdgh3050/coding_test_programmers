@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        const lazor = [];
+        for (let x of s) {
+          if (x === ")" && lazor[lazor.length - 1] === "(") {
+            lazor.pop();
+            lazor.push("x");
+          } else {
+            lazor.push(x);
+          }
+        }
+
+        let lazorStack = [];
+        let answer = 0;
+        for (let x of lazor) {
+          if (x === ")") {
+            const temp = [];
+            while (lazorStack[lazorStack.length - 1] !== "(") {
+              temp.push(lazorStack.pop());
+            }
+            lazorStack.pop();
+            answer += temp.length + 1;
+            lazorStack.push(...temp);
+          } else {
+            lazorStack.push(x);
+          }
+        }
+        return answer;
+      }
+
+      let a = "(((()(()()))(())()))(()())";
+      console.log(solution(a));
+    </script>
+  </body>
+</html>

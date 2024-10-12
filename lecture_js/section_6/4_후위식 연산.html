@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = [];
+        const cal = ["+", "-", "*", "/"];
+        for (let x of s) {
+          if (cal.includes(x)) {
+            const right = Number(answer.pop());
+            const left = Number(answer.pop());
+            answer.push(calc(left, right, x));
+          } else {
+            answer.push(Number(x));
+          }
+        }
+        return answer[0];
+      }
+
+      function calc(left, right, x) {
+        let cal = 0;
+        switch (x) {
+          case "+":
+            cal = left + right;
+            break;
+          case "-":
+            cal = left - right;
+            break;
+          case "*":
+            cal = left * right;
+            break;
+          case "/":
+            cal = left / right;
+            break;
+        }
+        return cal;
+      }
+
+      let str = "352+*9-";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
