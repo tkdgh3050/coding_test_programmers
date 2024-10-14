@@ -6,12 +6,35 @@
   <body>
     <script>
       function solution(m, songs) {
-        let answer;
+        let answer = 0;
+        let left = Math.max(...songs);
+        let right = songs.reduce((a, c) => a + c, 0);
+
+        while (left <= right) {
+          const mid = parseInt((left + right) / 2);
+          let cnt = 1;
+          let sum = 0;
+          for (let val of songs) {
+            if (sum + val > mid) {
+              cnt += 1;
+              sum = val;
+            } else {
+              sum += val;
+            }
+          }
+          console.log(left, right, mid, cnt);
+          if (cnt > m) {
+            left = mid + 1;
+          } else {
+            right = mid - 1;
+            answer = mid;
+          }
+        }
 
         return answer;
       }
 
-      let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      let arr = [5, 2, 6, 3, 1, 2, 4];
       console.log(solution(3, arr));
     </script>
   </body>

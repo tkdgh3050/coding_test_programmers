@@ -5,8 +5,33 @@
   </head>
   <body>
     <script>
+      function count(max, stable) {
+        let cnt = 1;
+        let criteria = stable[0];
+        for (let x = 1; x < stable.length; x++) {
+          if (stable[x] - criteria >= max) {
+            cnt += 1;
+            criteria = stable[x];
+          }
+        }
+        return cnt;
+      }
       function solution(c, stable) {
-        let answer;
+        let answer = 0;
+        stable.sort((a, b) => a - b);
+        let left = 1;
+        let right = stable[stable.length - 1] - stable[0];
+
+        while (left <= right) {
+          let mid = parseInt((left + right) / 2);
+          console.log(left, right, mid, count(mid, stable));
+          if (count(mid, stable) >= c) {
+            left = mid + 1;
+            answer = mid;
+          } else {
+            right = mid - 1;
+          }
+        }
 
         return answer;
       }

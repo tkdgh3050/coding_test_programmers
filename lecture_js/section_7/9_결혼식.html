@@ -5,8 +5,36 @@
   </head>
   <body>
     <script>
-      function solution(times) {}
+      // function solution(times) {
+      //   const end = times.sort((a, b) => b[1] - a[1])[0][1];
+      //   const start = times.sort((a, b) => a[0] - b[0])[0][0];
+      //   let max = 0;
 
+      //   for (let x = start; x < end; x++) {
+      //     let cnt = 0;
+      //     for (let [s, e] of times) {
+      //       if (s <= x && e > x) cnt += 1;
+      //     }
+      //     max = Math.max(max, cnt);
+      //   }
+      //   return max;
+      // }
+
+      function solution(times) {
+        let result = 0;
+        let cnt = 0;
+        const event = [];
+        times.forEach((val) => {
+          event.push([val[0], "IN"]);
+          event.push([val[1] - 1, "OUT"]);
+        });
+        event.sort((a, b) => a[0] - b[0]);
+        for (let [_, types] of event) {
+          types === "IN" ? (cnt += 1) : (cnt -= 1);
+          result = Math.max(result, cnt);
+        }
+        return result;
+      }
       let arr = [
         [14, 18],
         [12, 15],
