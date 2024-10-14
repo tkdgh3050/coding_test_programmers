@@ -1,15 +1,32 @@
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>출력결과</title>
-    </head>
-    <body>
-        <script>
-            function solution(n, k){
-           
-            }
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, k) {
+        let oneArr = Array.from({ length: n }, (_, idx) => idx + 1).reverse();
+        let tempArr = [];
+        let cnt = 1;
+        while (oneArr.length + tempArr.length > 1) {
+          if (oneArr.length === 0) {
+            oneArr = [...tempArr.reverse()];
+            tempArr = [];
+          }
 
-            console.log(solution(8, 3));
-        </script>
-    </body>
+          if (cnt === k) {
+            oneArr.pop();
+            cnt = 1;
+          } else {
+            tempArr.push(oneArr.pop());
+            cnt += 1;
+          }
+        }
+        return oneArr.length === 1 ? oneArr[0] : tempArr[0];
+      }
+
+      console.log(solution(8, 3));
+    </script>
+  </body>
 </html>

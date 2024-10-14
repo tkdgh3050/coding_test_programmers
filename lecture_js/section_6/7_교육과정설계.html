@@ -1,17 +1,23 @@
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>출력결과</title>
-    </head>
-    <body>
-        <script>
-            function solution(need, plan){
-             
-            }
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(need, plan) {
+        const check = [...need];
+        for (let sub of plan) {
+          if (check.length === 0) return "YES";
 
-            let a="CBA";
-            let b="CBDAGE";
-            console.log(solution(a, b));
-        </script>
-    </body>
+          if (sub === check[0]) check.shift();
+        }
+        return check.length === 0 ? "YES" : "NO";
+      }
+
+      let a = "CBA";
+      let b = "CBDAGE";
+      console.log(solution(a, b));
+    </script>
+  </body>
 </html>
