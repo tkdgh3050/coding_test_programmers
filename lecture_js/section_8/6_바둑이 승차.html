@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(c, arr) {
+        let max = Number.MIN_SAFE_INTEGER;
+
+        function DFS(idx, sum) {
+          if (sum > c) return;
+
+          if (idx === arr.length) {
+            max = Math.max(max, sum);
+          } else {
+            DFS(idx + 1, sum + arr[idx]);
+            DFS(idx + 1, sum);
+          }
+        }
+        DFS(0, 0);
+        return max;
+      }
+
+      let arr = [81, 58, 42, 33, 61];
+      console.log(solution(259, arr));
+    </script>
+  </body>
+</html>

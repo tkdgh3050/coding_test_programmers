@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, m) {
+        function DFS(level, val) {
+          if (level === m) {
+            console.log(val.join(" "));
+          } else {
+            for (let x = 1; x <= n; x++) {
+              DFS(level + 1, [...val, x]);
+            }
+          }
+        }
+        DFS(0, []);
+      }
+
+      console.log(solution(3, 2));
+    </script>
+  </body>
+</html>
