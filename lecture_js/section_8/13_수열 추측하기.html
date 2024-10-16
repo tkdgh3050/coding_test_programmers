@@ -5,7 +5,45 @@
   </head>
   <body>
     <script>
-      function solution(n, f) {}
+      function solution(n, f) {
+        const arr = Array.from({ length: n }, (_, idx) => idx + 1);
+        const check = Array.from({ length: n }, () => 1);
+        let flag = false;
+        let answer = [];
+        function allSum(list, limit) {
+          let answer = [...list];
+
+          while (answer.length > 1) {
+            const temp = [];
+            for (let x = 0; x < answer.length - 1; x++) {
+              if (answer[x] + answer[x + 1] > limit) return false;
+              temp.push(answer[x] + answer[x + 1]);
+            }
+            answer = [...temp];
+          }
+          return answer[0] === limit;
+        }
+
+        function DFS(level, list) {
+          if (flag) return;
+          if (level === 4) {
+            if (allSum(list, f)) {
+              flag = true;
+              answer = list;
+            }
+          } else {
+            for (let x = 0; x < arr.length; x++) {
+              if (check[x]) {
+                check[x] = 0;
+                DFS(level + 1, [...list, arr[x]]);
+                check[x] = 1;
+              }
+            }
+          }
+        }
+        DFS(0, []);
+        return answer;
+      }
 
       console.log(solution(4, 16));
     </script>

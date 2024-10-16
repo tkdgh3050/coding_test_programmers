@@ -5,7 +5,43 @@
   </head>
   <body>
     <script>
-      function solution(n, m) {}
+      function solution(n, m) {
+        const temp = Array.from({ length: m }, () => 0);
+        const answer = [];
+        function DFS(level, limit) {
+          if (level === m) {
+            answer.push([...temp]);
+          } else {
+            for (let x = limit; x <= n; x++) {
+              temp[level] = x;
+              DFS(level + 1, x + 1);
+            }
+          }
+        }
+        DFS(0, 1);
+        return answer;
+      }
+      // function solution(n, m) {
+      //   const check = Array.from({ length: n + 1 }, () => 1);
+      //   const answer = [];
+      //   function DFS(level, arr) {
+      //     if (arr.length > 1 && arr[arr.length - 1] < arr[arr.length - 2])
+      //       return;
+      //     if (level === m) {
+      //       answer.push(arr);
+      //     } else {
+      //       for (let x = 1; x < check.length; x++) {
+      //         if (check[x]) {
+      //           check[x] = 0;
+      //           DFS(level + 1, [...arr, x]);
+      //           check[x] = 1;
+      //         }
+      //       }
+      //     }
+      //   }
+      //   DFS(0, []);
+      //   return answer;
+      // }
 
       console.log(solution(4, 2));
     </script>

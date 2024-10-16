@@ -5,7 +5,27 @@
   </head>
   <body>
     <script>
-      function solution(m, arr) {}
+      function solution(m, arr) {
+        const answer = [];
+        const check = Array.from({ length: arr.length }, () => 1);
+
+        function DFS(level, list) {
+          if (level === 2) {
+            console.log([...list]);
+            answer.push(list);
+          } else {
+            for (let x = 0; x < arr.length; x++) {
+              if (check[x]) {
+                check[x] = 0;
+                DFS(level + 1, [...list, arr[x]]);
+                check[x] = 1;
+              }
+            }
+          }
+        }
+        DFS(0, []);
+        return answer;
+      }
 
       let arr = [3, 6, 9];
       console.log(solution(2, arr));

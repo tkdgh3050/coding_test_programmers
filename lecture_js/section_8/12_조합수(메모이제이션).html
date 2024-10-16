@@ -5,9 +5,25 @@
   </head>
   <body>
     <script>
-      function solution(n, r) {}
+      function solution(n, r) {
+        const valMap = new Map();
 
-      console.log(solution(5, 3));
+        function DFS(n, r) {
+          if (n === r || r === 0) return 1;
+
+          if (valMap.has(`${n},${r}`)) {
+            return valMap.get(`${n},${r}`);
+          } else {
+            const val = DFS(n - 1, r - 1) + DFS(n - 1, r);
+            valMap.set(`${n},${r}`, val);
+            return val;
+          }
+        }
+
+        return DFS(n, r);
+      }
+
+      console.log(solution(33, 19));
     </script>
   </body>
 </html>

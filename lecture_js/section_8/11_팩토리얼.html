@@ -5,7 +5,29 @@
   </head>
   <body>
     <script>
-      function solution(n) {}
+      function solution(n) {
+        function DFS(n) {
+          if (n === 1) {
+            return 1;
+          } else {
+            return DFS(n - 1) * n;
+          }
+        }
+        return DFS(n, 1);
+      }
+      // function solution(n) {
+      //   let result = 0;
+      //   function DFS(level, res) {
+      //     if (level === 1) {
+      //       result = res;
+      //       return;
+      //     } else {
+      //       DFS(level - 1, res * level);
+      //     }
+      //   }
+      //   DFS(n, 1);
+      //   return result;
+      // }
 
       console.log(solution(5));
     </script>
