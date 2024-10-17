@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(m, coin) {
+        const dp = Array.from({ length: m + 1 }, () => 0);
+        for (let val of coin) {
+          dp[val] = 1;
+        }
+        for (let idx = 1; idx <= m; idx++) {
+          if (dp[idx] !== 0) continue;
+          let min = Number.MAX_SAFE_INTEGER;
+
+          for (let val of coin) {
+            if (idx - val < 1) continue;
+            min = Math.min(dp[idx - val], min);
+          }
+          dp[idx] = min + 1;
+        }
+        return dp[m];
+      }
+
+      let arr = [1, 2, 5];
+      console.log(solution(15, arr));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        const arr = [0, 1, 2];
+        for (let x = 3; x <= n; x++) {
+          arr[x] = arr[x - 1] + arr[x - 2];
+        }
+        return arr[n];
+      }
+
+      console.log(solution(7));
+    </script>
+  </body>
+</html>
