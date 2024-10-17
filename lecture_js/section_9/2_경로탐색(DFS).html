@@ -5,7 +5,32 @@
   </head>
   <body>
     <script>
-      function solution(n, arr) {}
+      function solution(n, arr) {
+        let count = 0;
+        const path = Array.from({ length: n + 1 }, () => Array(n + 1).fill(0));
+        const check = Array.from({ length: n + 1 }, () => 1);
+        for (let [x, y] of arr) {
+          path[x][y] = 1;
+        }
+
+        function DFS(node) {
+          if (node === n) {
+            console.log([...check]);
+            count += 1;
+          } else {
+            for (let x = 1; x < n + 1; x++) {
+              if (path[node][x] === 1 && check[x]) {
+                check[x] = 0;
+                DFS(x);
+                check[x] = 1;
+              }
+            }
+          }
+        }
+        check[1] = 0;
+        DFS(1);
+        console.log(path, count);
+      }
 
       let arr = [
         [1, 2],

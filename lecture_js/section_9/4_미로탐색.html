@@ -5,7 +5,46 @@
   </head>
   <body>
     <script>
-      function solution(board) {}
+      function solution(board) {
+        let count = 0;
+        const xMaxIdx = board.length - 1;
+        const yMaxIdx = board[0].length - 1;
+
+        function DFS(x, y, list) {
+          if (x === xMaxIdx && y === yMaxIdx) {
+            console.log(list);
+            count += 1;
+          } else {
+            // 상
+            if (x > 0 && board[x - 1][y] === 0) {
+              board[x - 1][y] = 1;
+              DFS(x - 1, y, [...list, [x - 1, y]]);
+              board[x - 1][y] = 0;
+            }
+            // 하
+            if (x < xMaxIdx && board[x + 1][y] === 0) {
+              board[x + 1][y] = 1;
+              DFS(x + 1, y, [...list, [x + 1, y]]);
+              board[x + 1][y] = 0;
+            }
+            // 좌
+            if (y > 0 && board[x][y - 1] === 0) {
+              board[x][y - 1] = 1;
+              DFS(x, y - 1, [...list, [x, y - 1]]);
+              board[x][y - 1] = 0;
+            }
+            // 우
+            if (y < yMaxIdx && board[x][y + 1] === 0) {
+              board[x][y + 1] = 1;
+              DFS(x, y + 1, [...list, [x, y + 1]]);
+              board[x][y + 1] = 0;
+            }
+          }
+        }
+        board[0][0] = 1;
+        DFS(0, 0, [[0, 0]]);
+        return count;
+      }
 
       let arr = [
         [0, 0, 0, 0, 0, 0, 0],

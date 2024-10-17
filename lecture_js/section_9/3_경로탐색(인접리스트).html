@@ -5,7 +5,31 @@
   </head>
   <body>
     <script>
-      function solution(n, arr) {}
+      function solution(n, arr) {
+        let count = 0;
+        const list = Array.from({ length: n + 1 }, () => []);
+        for (let [x, y] of arr) {
+          list[x].push(y);
+        }
+        const check = Array(6).fill(1);
+
+        function DFS(node) {
+          if (node === n) {
+            count += 1;
+          } else {
+            for (let val of list[node]) {
+              if (check[val]) {
+                check[val] = 0;
+                DFS(val);
+                check[val] = 1;
+              }
+            }
+          }
+        }
+        check[1] = 0;
+        DFS(1);
+        return count;
+      }
 
       let arr = [
         [1, 2],
