@@ -31,3 +31,17 @@ N	result
 입출력 예 #3
 위와 같은 방식으로 합니다.
  */
+
+function solution(n) {
+  let temp = n;
+  let count = 0;
+  while (temp > 0) {
+    if (temp % 2 === 0) {
+      temp /= 2;
+    } else {
+      temp -= 1;
+      count += 1;
+    }
+  }
+  return count;
+}
