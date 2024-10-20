@@ -28,3 +28,22 @@ number	limit	power	result
 
 1부터 10까지의 약수의 개수는 순서대로 [1, 2, 2, 3, 2, 4, 2, 4, 3, 4]개입니다. 공격력의 제한수치가 3이기 때문에, 6, 8, 10번 기사는 공격력이 2인 무기를 구매합니다. 따라서 해당 수들의 합인 21을 return 합니다.
  */
+
+function solution(number, limit, power) {
+  let answer = 0;
+  for (let x = 1; x <= number; x++) {
+    const val = getCnt(x);
+    val > limit ? (answer += power) : (answer += val);
+  }
+  return answer;
+}
+
+function getCnt(n) {
+  const middle = Math.sqrt(n);
+  const isPow = middle % 1 === 0;
+  let cnt = 0;
+  for (let x = 1; x < middle; x++) {
+    if (n % x === 0) cnt += 2;
+  }
+  return isPow ? cnt + 1 : cnt;
+}
