@@ -56,3 +56,42 @@ s	result
 입출력 예 #5
 (3, 2, 4, 1)을 집합 기호를 이용해 표현하면 {{3},{3,2},{3,2,4},{3,2,4,1}}이 되며, 이는 {{4,2,3},{3},{2,3,4,1},{2,3}}과 같습니다.
  */
+
+function solution(s) {
+  const result = [];
+  const resultSet = new Set();
+  const sortedList = getListFromString(s);
+  for (let tuple of sortedList) {
+    tuple.forEach((val) => {
+      if (!resultSet.has(val)) {
+        result.push(val);
+        resultSet.add(val);
+      }
+    });
+  }
+  return result;
+}
+
+function getListFromString(s) {
+  const list = [];
+  let temp = [];
+  let tempNum = "";
+  for (let idx = 1; idx < s.length - 1; idx++) {
+    if (s[idx] === "{") {
+      continue;
+    } else if (s[idx] === "}") {
+      temp.push(Number(tempNum));
+      list.push([...temp]);
+      tempNum = "";
+      temp = [];
+    } else if (s[idx] === ",") {
+      if (tempNum.length === 0) continue;
+      temp.push(Number(tempNum));
+      tempNum = "";
+    } else {
+      tempNum += s[idx];
+    }
+  }
+  list.sort((a, b) => a.length - b.length);
+  return list;
+}
