@@ -21,3 +21,23 @@ n	result
 입출력 예 #2
 1부터 5 사이의 소수는 [2,3,5] 3개가 존재하므로 3를 반환
  */
+
+function solution(n) {
+  let prime = [2];
+  for (let x = 3; x <= n; x++) {
+    if (x % 2 === 0) continue;
+    if (isPrime(x, prime)) prime.push(x);
+  }
+  return prime.length;
+}
+
+function isPrime(x, prime) {
+  const middle = Math.sqrt(x);
+
+  for (let p of prime) {
+    if (p > middle) break;
+    if (x % p === 0) return false;
+  }
+
+  return true;
+}
