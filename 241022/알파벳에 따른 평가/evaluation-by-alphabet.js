@@ -1,5 +1,5 @@
 const fs = require('fs');
-const val = fs.readFileSync(0).toString();
+const val = fs.readFileSync(0).toString().trim();
 
 if (val === 'S') {
     console.log('Superior')
