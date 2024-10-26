@@ -12,6 +12,6 @@ for (let x = 1; x <= t; x++) {
     ]
 }
 
-for (let x = 0; x < n; x++) {
+for (let x = 0; x < 3; x++) {
     console.log(...arr[x])
 }
