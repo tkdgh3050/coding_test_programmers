@@ -28,7 +28,7 @@ for (let x = 0; x < arr.length; x++) {
     if (checkMaxCnt(arr[x]) >= m) answer += 1;
     let temp = [];
     for (let y = 0; y < arr.length; y++) {
-        temp.push(arr[x][y])
+        temp.push(arr[y][x])
     }
     if (checkMaxCnt(temp) >= m) answer += 1;
 }
