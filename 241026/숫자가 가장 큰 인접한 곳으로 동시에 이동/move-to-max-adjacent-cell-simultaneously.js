@@ -15,19 +15,18 @@ for (let [x,y] of ball) {
 
 const maxValXY = (x, y) => {
     // x, y 좌표를 받으면 상하좌우 살펴서 가장 큰 좌표 값을 리턴
-    let maxVal = arr[x][y];
+    let maxVal = nowArr[x][y];
     let xy = [x,y];
     for (let idx = 0; idx < dx.length; idx++) {
         const newX = x + dx[idx];
         const newY = y + dy[idx];
         if (!inRange(newX, newY)) continue;
 
-        if(maxVal < arr[newX][newY]) {
-            maxVal = arr[newX][newY];
+        if(maxVal < nowArr[newX][newY]) {
+            maxVal = nowArr[newX][newY];
             xy = [newX, newY];
         }
     }
-
     return xy
 }
 
@@ -46,13 +45,14 @@ const countOne = () => {
     return cnt
 }
 
-const deleteOverOne = (tmep) => {
+const deleteOverOne = (temp) => {
     // 1 초과하는 경우 0으로 초기화
     for (let x = 0; x < n; x++) {
         for (let y = 0; y < n; y++) {
-            if (tmep[x][y] > 1) tmep[x][y] = 0;
+            if (temp[x][y] > 1) temp[x][y] = 0;
         }
     }
+    return temp;
 }
 
 for (let cnt = 1; cnt <= t; cnt++) {
@@ -65,8 +65,8 @@ for (let cnt = 1; cnt <= t; cnt++) {
             temp[newX][newY] += 1;
         }
     }
-    deleteOverOne(temp);
-    nowArr = temp;
+    
+    nowArr = deleteOverOne(temp);
 }
 
 console.log(countOne())
