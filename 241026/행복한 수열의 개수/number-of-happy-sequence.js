@@ -5,37 +5,32 @@ const [n, m] = input1.trim().split(' ').map(Number);
 const arr = input2.map(val => val.trim().split(' ').map(Number));
 let answer = 0;
 
+function checkMaxCnt(list) {
+    let maxCnt = 1;
+    let now = list[0];
+    let cnt = 1;
+
+    for (let x = 1; x < list.length; x++) {
+        if (list[x] === now) {
+            cnt += 1;
+        } else {
+            maxCnt = Math.max(maxCnt, cnt);
+            now = list[x];
+            cnt = 1;
+        }
+    }
+    maxCnt = Math.max(maxCnt, cnt);
+
+    return maxCnt
+}
+
 for (let x = 0; x < arr.length; x++) {
-    let cntX = 1;
-    let numX = arr[x][0]
-    let cntY = 1;
-    let numY = arr[0][x]
-    for (let y = 1; y < arr.length; y++) {
-        if (numX === arr[x][y]) {
-            cntX += 1;
-        } else {
-            if (cntX >= m) {
-                answer += 1;
-                break;
-            }
-            numX = arr[x][y];
-            cntX = 1;
-        }
+    if (checkMaxCnt(arr[x]) >= m) answer += 1;
+    let temp = [];
+    for (let y = 0; y < arr.length; y++) {
+        temp.push(arr[x][y])
     }
-    for (let y = 1; y < arr.length; y++) {
-        if (numY === arr[y][x]) {
-            cntY += 1;
-        } else {
-            if (cntY >= m) {
-                answer += 1;
-                break;
-            }
-            numY = arr[y][x];
-            cntY = 1;
-        }
-    }
-    if (cntX >= m) answer += 1;
-    if (cntY >= m) answer += 1;
+    if (checkMaxCnt(temp) >= m) answer += 1;
 }
 
 console.log(answer)
