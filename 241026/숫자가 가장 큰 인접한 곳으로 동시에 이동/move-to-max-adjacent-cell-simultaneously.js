@@ -15,15 +15,15 @@ for (let [x,y] of ball) {
 
 const maxValXY = (x, y) => {
     // x, y 좌표를 받으면 상하좌우 살펴서 가장 큰 좌표 값을 리턴
-    let maxVal = nowArr[x][y];
-    let xy = [x,y];
+    let maxVal = 0;
+    let xy = [-1,-1];
     for (let idx = 0; idx < dx.length; idx++) {
         const newX = x + dx[idx];
         const newY = y + dy[idx];
         if (!inRange(newX, newY)) continue;
 
-        if(maxVal < nowArr[newX][newY]) {
-            maxVal = nowArr[newX][newY];
+        if(maxVal < arr[newX][newY]) {
+            maxVal = arr[newX][newY];
             xy = [newX, newY];
         }
     }
