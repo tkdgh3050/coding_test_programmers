@@ -15,7 +15,7 @@ let answer = 0;
 
 function DFS(x, y) {
     if (answer) return;
-    if (x === n - 1 && y === n-1) {
+    if (x === n - 1 && y === m-1) {
         answer = 1;
         return;
     }
