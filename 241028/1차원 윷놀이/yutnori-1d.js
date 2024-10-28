@@ -5,6 +5,8 @@ const turnArr = val.trim().split(' ').map(Number);
 
 const check = Array.from({length: turn}, () => 1);
 const temp = [];
+const sum = turnArr.reduce((a,c) => a+c, 0);
+const maxMal = Math.min(mal, parseInt(sum / pan))
 let maxVal = 0;
 
 function countGoalIn(arr) {
@@ -12,7 +14,7 @@ function countGoalIn(arr) {
     let cnt = 0;
     let temp = 1;
     for (let idx = 0; idx < arr.length; idx++) {
-        if (cnt >= mal) break;
+        if (cnt >= maxMal) break;
         temp += arr[idx];
         if (temp >= pan) {
             cnt += 1;
@@ -21,10 +23,9 @@ function countGoalIn(arr) {
     }
     return cnt;
 }
-
 function makePer(level) {
     // 들어올 수 있는 순서쌍을 만들기
-    if (maxVal === mal) return;
+    if (maxVal === maxMal) return;
     if (level === turn) {
         maxVal = Math.max(maxVal, countGoalIn(temp));
     } else {
