@@ -6,8 +6,8 @@ const arr = val.map(v => v.trim().split(' ').map(Number));
 
 const visited = Array.from({length: n}, () => Array(m).fill(1));
 
-const dx = [1, 0];
-const dy = [0 ,1];
+const dx = [0, 1];
+const dy = [1 ,0];
 
 const isRange = (x, y) => x>=0 && x< n && y>=0 && y<m;
 
