@@ -8,7 +8,7 @@ const temp = []
 
 function getComb(now) {
     if (temp.length === m) {
-        max = Math.max(max, temp.reduce((a,c) => a ^ c, 0))
+        return max = Math.max(max, temp.reduce((a,c) => a ^ c, 0))
     } else {
         for (let x = now; x < arr.length; x++) {
             temp.push(arr[x]);
@@ -18,5 +18,5 @@ function getComb(now) {
     }
 }
 
-getComb(0, []);
+getComb(0);
 console.log(max)
