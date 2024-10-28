@@ -34,4 +34,4 @@ function DFS() {
 
 DFS();
 
-console.log(visited[n-1][m-1])
+console.log(visited[n-1][m-1] === Number.MAX_SAFE_INTEGER ? -1 : visited[n-1][m-1])
