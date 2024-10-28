@@ -27,7 +27,6 @@ function DFS(x, y) {
         if (isRange(newX, newY) && visited[newX][newY] && arr[newX][newY]) {
             visited[newX][newY] = 0;
             DFS(newX, newY);
-            visited[newX][newY] = 1;
         }
     }
 }
