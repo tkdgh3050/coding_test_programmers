@@ -24,9 +24,9 @@ function countGoalIn(arr) {
 
 function makePer(level) {
     // 들어올 수 있는 순서쌍을 만들기
+    if (maxVal === mal) return;
     if (level === turn) {
         maxVal = Math.max(maxVal, countGoalIn(temp));
-        if (maxVal === mal) return console.log(maxVal);
     } else {
         for (let x = 0; x < turnArr.length; x++) {
             if (check[x]) {
