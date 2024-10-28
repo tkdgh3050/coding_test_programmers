@@ -6,7 +6,7 @@ const turnArr = val.trim().split(' ').map(Number);
 const check = Array.from({length: turn}, () => 1);
 const temp = [];
 const sum = turnArr.reduce((a,c) => a+c, 0);
-const maxMal = Math.min(mal, parseInt(sum / pan))
+const maxMal = Math.min(mal, parseInt(sum / (pan-1)))
 let maxVal = 0;
 
 function countGoalIn(arr) {
