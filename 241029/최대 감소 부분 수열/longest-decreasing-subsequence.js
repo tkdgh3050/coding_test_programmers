@@ -8,7 +8,7 @@ const [info, val] = fs.readFileSync(0).toString().trim().split('\n');
 const n = Number(info);
 const arr = val.trim().split(' ').map(Number);
 
-const dp = Array.from({length:n}, () => 0);
+const dp = Array.from({length:n}, () => 1);
 dp[0] = 1;
 
 for (let now = 1; now < n; now++) {
