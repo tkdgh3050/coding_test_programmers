@@ -25,4 +25,4 @@ for (let num = 1; num <= m; num++) {
     }
 }
 
-console.log(dp[m])
+console.log(dp[m] === MAX_INT ? -1 : dp[m])
