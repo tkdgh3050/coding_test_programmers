@@ -10,7 +10,6 @@ const [n, startPoint, ...data] = fs.readFileSync(0).toString().trim().split('\n'
 
 const [startX, startY] = startPoint.trim().split(' ').map(val => Number(val) - 1);
 const mat = data.map(v => v.trim().split(''));
-const visited = Array.from({length: n}, () => Array(n).fill(0));
 
 const DIR = {
     "UP": 1,
@@ -62,14 +61,13 @@ while(moveFlag) {
             //갈 수 있으면 
             nowX = nextX;
             nowY = nextY;
-            if (visited[nowX][nowY] === 1) {
-                //만약 방문한 곳이라면 불가능으로 -1 출력
+            if (nowX === startX && nowY === startY) {
+                //만약 시작점라면 불가능으로 -1 출력
                 moveCnt = -1;
                 break;
             } else {
                 //전진
                 // 파라미터들 변경하고 끝
-                visited[nowX][nowY] = 1
                 moveCnt += 1;
             }
         } else {
@@ -87,14 +85,13 @@ while(moveFlag) {
         }
         nowX = nextX;
         nowY = nextY;
-        if (visited[nowX][nowY] === 1) {
-                //만약 방문한 곳이라면 불가능으로 -1 출력
+        if (nowX === startX && nowY === startY) {
+                //만약 시작점라면 불가능으로 -1 출력
                 moveCnt = -1;
                 break;
             } else {
                 //전진
                 // 파라미터들 변경하고 끝
-                visited[nowX][nowY] = 1
                 moveCnt += 1;
             }
     }
