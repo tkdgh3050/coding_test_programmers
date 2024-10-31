@@ -11,7 +11,7 @@ const [info, ...data] = fs.readFileSync(0).toString().trim().split('\n');
 const [n,perGold] = info.trim().split(' ').map(Number);
 const arr = data.map(v => v.trim().split(' ').map(Number));
 
-const maxSize = parseInt((n+2)/2)
+const maxSize = n % 2 === 0 ? n : n-1;
 const getCost = (k) => k*k + (k+1)*(k+1);
 let maxCnt = 0;
 const getRange = (k) => {
