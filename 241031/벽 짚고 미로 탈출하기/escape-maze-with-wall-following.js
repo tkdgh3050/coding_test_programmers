@@ -61,7 +61,7 @@ while(moveFlag) {
             //갈 수 있으면 
             nowX = nextX;
             nowY = nextY;
-            if (nowX === startX && nowY === startY) {
+            if (nowX === startX && nowY === startY && nowDirection === DIR.RIGHT) {
                 //만약 시작점라면 불가능으로 -1 출력
                 moveCnt = -1;
                 break;
@@ -89,7 +89,7 @@ while(moveFlag) {
         }
         nowX = nextX;
         nowY = nextY;
-        if (nowX === startX && nowY === startY) {
+        if (nowX === startX && nowY === startY && nowDirection === DIR.RIGHT) {
                 //만약 시작점라면 불가능으로 -1 출력
                 moveCnt = -1;
                 break;
