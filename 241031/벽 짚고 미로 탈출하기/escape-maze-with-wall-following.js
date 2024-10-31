@@ -51,8 +51,6 @@ let moveCnt = 0;
 let [nowX, nowY] = [startX, startY];
 
 while(moveFlag) {
-    console.log(nowX, nowY, nowDirection)
-
     if (hasRight(nowX, nowY, nowDirection)) { //오른쪽이 벽이있으면 전진
         const [nextX, nextY] = nextXY(nowX, nowY, nowDirection);
         if (escape(nextX, nextY)) {
