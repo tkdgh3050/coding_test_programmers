@@ -74,6 +74,10 @@ while(moveFlag) {
             //갈 수 없으면
             //왼쪽으로 회전
             nowDirection = turnLeft(nowDirection);
+            if (nowX === startX && nowY === startY && nowDirection === DIR.RIGHT) {
+                moveCnt = -1;
+                break;
+            }
         }
     } else { 
         //없으면 오른쪽으로 회전하고 전진
