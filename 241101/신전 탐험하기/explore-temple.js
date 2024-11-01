@@ -24,4 +24,4 @@ for (let idx = 1; idx < n; idx++) {
     }
 }
 
-console.log(dp)
+console.log(Math.max(...dp[n-1]))
