@@ -11,17 +11,15 @@ const arr = data.trim().split(' ').map(Number);
 const dp = Array(n).fill(0);
 
 dp[0] = 0;
-let earlyVal = 0;
 let isEarly = false;
 for (let idx = 0; idx < n-1; idx++) {
     for (let jump = 1; jump <= arr[idx]; jump++) {
         dp[idx+jump] = Math.max(dp[idx+jump], dp[idx] + 1);
     }
     if (dp[idx+1] === 0) {
-        earlyVal = dp[idx];
         isEarly = true;
         break;
     }
 }
 
-isEarly ? console.log(earlyVal) : console.log(dp[n-1])
+isEarly ? console.log(Math.max(...dp)) : console.log(dp[n-1])
