@@ -14,26 +14,27 @@ const isRange = (x, y) => x >= 0 && y >= 0 && x<n && y<m;
 const turn = (x1, y1, x2, y2) => {
     const rightTop = arr[x1][y2];
     const rightBottom = arr[x2][y2];
-    const leftBottom = arr[x1][y2];
+    const leftBottom = arr[x2][y1];
+    const leftTop = arr[x1][y1]
     // 윗줄
-    for (let y = y2; y >= y1+1; y--) {
+    for (let y = y2; y >= y1+2; y--) {
         arr[x1][y] = arr[x1][y-1]
     }
-    
+    arr[x1][y1+1] = leftTop;
     // 오른쪽
-    for (let x = x2; x >= x1+1; x--) {
+    for (let x = x2; x >= x1+2; x--) {
         arr[x][y2] = arr[x-1][y2]
     }
     arr[x1+1][y2] = rightTop;
     
     // 아래
-    for (let y = y1; y <= y2-1; y++) {
+    for (let y = y1; y <= y2-2; y++) {
         arr[x2][y] = arr[x2][y+1]
     }
     arr[x2][y2-1] = rightBottom;
 
     // 왼쪽
-    for (let x = x1; x <= x2-1; x++) {
+    for (let x = x1; x <= x2-2; x++) {
         arr[x][y1] = arr[x+1][y1]
     }
     arr[x2-1][y1] = leftBottom
