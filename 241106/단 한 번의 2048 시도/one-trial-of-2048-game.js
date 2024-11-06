@@ -63,7 +63,7 @@ const merge = (dir) => {
             let tempIdx = n-1;
             let idx = n-1;
             while (tempIdx >= 0) {
-                if (arr[x][tempIdx] === arr[x][tempIdx-1]) {
+                if (tempIdx !== 0 && arr[x][tempIdx] === arr[x][tempIdx-1]) {
                     temp[x][idx] = arr[x][tempIdx] * 2;
                     tempIdx -= 2;
                 } else {
@@ -78,7 +78,7 @@ const merge = (dir) => {
             let tempIdx = 0;
             let idx = 0;
             while (tempIdx < n) {
-                if (arr[x][tempIdx] === arr[x][tempIdx+1]) {
+                if (tempIdx !== n-1 && arr[x][tempIdx] === arr[x][tempIdx+1]) {
                     temp[x][idx] = arr[x][tempIdx] * 2;
                     tempIdx += 2;
                 } else {
@@ -93,7 +93,7 @@ const merge = (dir) => {
             let tempIdx = 0;
             let idx = 0;
             while (tempIdx < n) {
-                if (arr[tempIdx][y] === arr[tempIdx+1][y]) {
+                if (tempIdx !== n-1 && arr[tempIdx][y] === arr[tempIdx+1][y]) {
                     temp[idx][y] = arr[tempIdx][y] * 2;
                     tempIdx += 2;
                 } else {
@@ -108,7 +108,7 @@ const merge = (dir) => {
             let tempIdx = n-1;
             let idx = n-1;
             while (tempIdx >= 0) {
-                if (arr[tempIdx][y] === arr[tempIdx-1][y]) {
+                if (tempIdx !== 0 && arr[tempIdx][y] === arr[tempIdx-1][y]) {
                     temp[idx][y] = arr[tempIdx][y] * 2;
                     tempIdx -= 2;
                 } else {
