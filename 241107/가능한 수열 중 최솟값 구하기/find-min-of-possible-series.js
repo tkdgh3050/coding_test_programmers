@@ -7,19 +7,21 @@
 
 const fs = require('fs');
 const n = Number(fs.readFileSync(0).toString().trim());
+
 let answer = '';
 let flag = false;
-const DFS = (level, now, arr) => {
-    if (flag) return;
+
+const DFS = (level, now, str) => {
+    if (flag || !checkAble(str)) return;
     if (level === n) {
-        if (checkAble(arr)) {
-            answer = arr.join('')
+        if (checkAble(str)) {
+            answer = str
             flag = true;
         }
     } else {
         for (let idx = 4; idx <= 6; idx++) {
             if (idx === now) continue;
-            DFS(level+1, idx, [...arr, idx])
+            DFS(level+1, idx, str+String(idx))
         }
     }
 }
@@ -28,7 +30,7 @@ const checkAble = (arr) => {
     if (arr.length === 1) return true;
     for (let len = 2; len <= parseInt(arr.length /2); len++) {
         for (let idx = 0; idx <= arr.length - len * 2; idx++) {
-            if(arr.slice(idx, idx+len).join('') === arr.slice(idx+len, idx+len*2).join('')) return false;
+            if(arr.slice(idx, idx+len) === arr.slice(idx+len, idx+len*2)) return false;
         }
     }
     return true
