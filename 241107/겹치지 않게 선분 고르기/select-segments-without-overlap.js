@@ -22,7 +22,12 @@ const checkCnt = (arr) => {
         temp.push([x1, 1])
         temp.push([x2, -1])
     }
-    temp.sort((a,b) => a[0] - b[0]);
+    temp.sort((a,b) => {
+        if (a[0] === b[0]) {
+            return b[1] - a[1]
+        }
+        return a[0] - b[0]
+    });
     let cnt = 0;
     let total = 0;
     for (let [_, val] of temp) {
