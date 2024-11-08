@@ -39,7 +39,7 @@ const DFS = (x,y) => {
 }
 
 let maxCnt = 0;
-let maxK = 0;
+let maxK = 1;
 
 for (let k = 1; k <= 100; k++) {
     if (rain(k)) break;
