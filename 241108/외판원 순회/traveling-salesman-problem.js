@@ -15,6 +15,8 @@ let minSum = Number.MAX_SAFE_INTEGER;
 const DFS = (level, cost, nowIdx) => {
     if (level === n-1) {
         // 마지막 순서에서 0로 돌아가는 로직 추가
+        if (arr[nowIdx][0] === 0) return;
+
         minSum = Math.min(minSum, cost + arr[nowIdx][0])
     } else {
         for (let idx = 1; idx < n; idx++) {
