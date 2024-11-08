@@ -62,6 +62,7 @@ const bfs = () => {
             const newX = x + dx[idx];
             const newY = y + dy[idx];
             if (isRange(newX, newY) && check[newX][newY] === 0) {
+                check[newX][newY] = -1;
                 queue.push([newX,newY])
             }
         }
