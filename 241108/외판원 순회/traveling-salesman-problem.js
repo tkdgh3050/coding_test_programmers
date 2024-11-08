@@ -18,7 +18,7 @@ const DFS = (level, cost, nowIdx) => {
         minSum = Math.min(minSum, cost + arr[nowIdx][0])
     } else {
         for (let idx = 1; idx < n; idx++) {
-            if (!visited[idx]) {
+            if (!visited[idx] && arr[nowIdx][idx] !== 0) {
                 visited[idx] = true;
                 DFS(level+1, cost + arr[nowIdx][idx] ,idx);
                 visited[idx] = false;
