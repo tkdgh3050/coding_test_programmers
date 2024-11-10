@@ -21,25 +21,26 @@ const dx = [1, -1 ,0 ,0]
 const dy = [0 ,0,1, -1 ]
 const isRange = (x,y) => x>=0 && y>=0 && x<n && y<n;
 
-const visited = Array.from({length:n}, () => Array(n).fill(false));
+// const visited = Array.from({length:n}, () => Array(n).fill(false));
 let minVal = -1;
 const bfs = (start, end) => {
-    const queue = [[...start, 0, 0]];
+    const queue = [[...start, 0, 0, [start]]];
+    // visited[start[0]][start[1]] =true;
     while (queue.length) {
-        const [nowX, nowY, nowTime, nowBreak] = queue.shift();
+        const [nowX, nowY, nowTime, nowBreak, visited] = queue.shift();
         for (let idx = 0; idx < dx.length; idx++) {
             const newX = nowX + dx[idx];
             const newY = nowY + dy[idx];
-            if (!isRange(newX, newY) || visited[newX][newY]) continue;
+            if (!isRange(newX, newY) || visited.findIndex(val => val[0] === newX && val[1] === newY) >= 0) continue;
             if (arr[newX][newY] === 1 && nowBreak === k) continue;
 
             if (newX === end[0] && newY === end[1]) return minVal = nowTime + 1;
             
-            visited[newX][newY] = true;
+            // visited[newX][newY] = true;
             if (arr[newX][newY] === 1) {
-                queue.push([newX, newY, nowTime + 1, nowBreak + 1])
+                queue.push([newX, newY, nowTime + 1, nowBreak + 1, [...visited, [newX, newY]]])
             } else {
-                queue.push([newX, newY, nowTime + 1, nowBreak])
+                queue.push([newX, newY, nowTime + 1, nowBreak, [...visited, [newX, newY]]])
             }
         }
     }
