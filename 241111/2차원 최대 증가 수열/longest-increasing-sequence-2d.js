@@ -22,15 +22,17 @@ for (let idx = 1; idx < n; idx++) {
 for (let idx = 1; idx < m; idx++) {
     arr[0][idx] = startVal;
 }
+
 let max = 0;
 
 for (let x = 1; x < n; x++) {
     for (let y = 1; y<m; y++) {
-        if (arr[x][y] <= startVal) continue;
        
         let maxVal = 1;
-        for (let compare = 0; compare < y; compare++) {
-            if (arr[x][y] > arr[x-1][compare]) maxVal = Math.max(maxVal, dp[x-1][compare]+1)
+        for (let compareX = 0; compareX < x; compareX++) {
+            for (let compareY = 0; compareY < y; compareY++) {
+                if (arr[x][y] > arr[compareX][compareY]) maxVal = Math.max(maxVal, dp[compareX][compareY]+1)
+            }
         }
         dp[x][y] = maxVal;
         max = Math.max(max, maxVal)
