@@ -31,7 +31,7 @@ for (let x = 1; x < n; x++) {
         let maxVal = 1;
         for (let compareX = 0; compareX < x; compareX++) {
             for (let compareY = 0; compareY < y; compareY++) {
-                if (arr[x][y] > arr[compareX][compareY]) maxVal = Math.max(maxVal, dp[compareX][compareY]+1)
+                if (arr[x][y] > arr[compareX][compareY] && arr[x][y] > startVal) maxVal = Math.max(maxVal, dp[compareX][compareY]+1)
             }
         }
         dp[x][y] = maxVal;
