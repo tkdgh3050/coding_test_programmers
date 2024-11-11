@@ -18,12 +18,12 @@ for (let idx = 0; idx < n; idx++) {
 }
 
 for (let money = 2; money <= m; money++) {
-    let max = -1;
+    let max = dp[money];
     for (let idx = 0; idx < n; idx++) {
-        if (money - arr[idx] < 1) continue;
+        if (money - arr[idx] < 1 || dp[money - arr[idx]] === -1) continue;
         max = Math.max(max,dp[money - arr[idx]] + 1)
     }
-    dp[money] = Math.max(dp[money], max)
+    dp[money] = max
 }
 
 console.log(dp[m])
