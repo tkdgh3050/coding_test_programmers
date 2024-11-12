@@ -22,6 +22,8 @@ while (s.length > 0 && p.length > 0) {
 
     if (p[1] === '*') {
         if (p[0] === '.') {
+            s = [];
+            p = [];
             break;
         } else {
             while(s[0] === p[0]) {
