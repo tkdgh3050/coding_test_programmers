@@ -10,11 +10,9 @@ const [info, data] = fs.readFileSync(0).toString().trim().split('\n');
 let s = info.trim().split('');
 let p = data.trim().split('');
 
-let answer = true;
 while (s.length > 0 && p.length > 0) {
     if (p.length === 1) {
         if (p[0] !== '.' && s[0] !== p[0]) {
-            answer = false;
             break;
         }
         s.shift();
@@ -37,7 +35,6 @@ while (s.length > 0 && p.length > 0) {
         p.shift();
     } else {
         if (s[0] !== p[0]) {
-            answer = false;
             break;
         }
         s.shift();
@@ -45,4 +42,4 @@ while (s.length > 0 && p.length > 0) {
     }   
 }
 
-console.log(answer)
+console.log(s.length === 0? 'true' : 'false')
