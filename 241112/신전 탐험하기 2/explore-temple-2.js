@@ -33,13 +33,10 @@ for (let idx = 2; idx < n; idx++) {
     }
 }
 
-for (let idx = 0; idx < 3; idx++) {
-    for (let y = 0; y < 3; y++) {
-        if (idx === y) continue;
-        for (let filter = 0; filter < 3; filter++) {
-            if (idx === filter) continue;
-            maxVal = Math.max(maxVal, dp[n-1][y][filter]);
-        }
+for (let y = 0; y < 3; y++) {
+    for (let filter = 0; filter < 3; filter++) {
+        if (y === filter) continue;
+        maxVal = Math.max(maxVal, dp[n-1][y][filter]);
     }
 }
 
