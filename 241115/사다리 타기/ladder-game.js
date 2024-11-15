@@ -8,7 +8,7 @@ const [n,m] = info.trim().split(' ').map(Number);
 const lineArr = data.map(v => v.trim().split(' ').map(Number));
 
 const getRes = (line) => {
-    const arr = Array.from({length:m+1}, () => Array(n+1).fill(0));
+    const arr = Array.from({length:16}, () => Array(n+1).fill(0));
     let order = ''
     for (let [y, x] of line) {
         arr[x][y] = y+1;
@@ -17,7 +17,7 @@ const getRes = (line) => {
     let nowY = 0;
     for (let y = 1; y<=n; y++) {
         nowY = y;
-        for (let x = 1; x<=m; x++) {
+        for (let x = 1; x<=15; x++) {
             if (arr[x][nowY] !== 0) {
                 nowY = arr[x][nowY]
             }
