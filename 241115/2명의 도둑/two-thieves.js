@@ -13,39 +13,43 @@ const [n,m,c] = info.trim().split(' ').map(Number);
 const arr = data.map(v => v.trim().split(' ').map(Number));
 const maxArr = [];
 
-const isOverlay = (x1, y1, cnt1, x2, y2) => {
+const isOverlay = (x1, y1, x2, y2) => {
     if (x1 !== x2) return false;
-    if (y1+cnt1 <= y2) return false;
+    if (y1+m <= y2) return false;
     return true;
+}
+
+const getMaxComb = (level, list, sum, limit) => {
+    if (limit > c) return;
+    if (level === list.length) {
+        max = Math.max(sum, max)
+    } else {
+        getMaxComb(level+1,list, sum + Math.pow(list[level], 2), limit + list[level])
+        getMaxComb(level+1,list, sum, limit)
+    }
 }
 
 // 선택했을 때의 최대값 구해두고 
 // (각 칸을 첫번째로 선택했을 때 얻을 수 있는 최대값 기록해두기, 카운팅까지)
+let max = 0;
 for (let x = 0; x < n; x++) {
-    for (let y = 0; y < n; y++) {
-        let cnt = 0;
-        let cost = 0;
-        let weight = 0;
-        for (let yPlus = y; yPlus < y+m; yPlus++) {
-            if(yPlus >= n) break;
-            if (weight + arr[x][yPlus] > c) continue;
-            cnt = yPlus - y + 1;
-            weight += arr[x][yPlus]
-            cost += Math.pow(arr[x][yPlus], 2);
-        }
-        maxArr.push([cost, cnt, x, y])
+    for (let y = 0; y <= n - m; y++) {
+        max = 0;
+        getMaxComb(0,arr[x].slice(y, y+m), 0, 0)
+        maxArr.push([max, x, y])
     }
 }
 
 let maxVal = 0;
 
+// 조합해서 최댓값을 찾는다 (겹치면 패스)
 const dfs = (level, list) => {
     if (level === maxArr.length) return;
     if (list.length === 2) {
-        const [val1, cnt1, x1, y1] = maxArr[list[0]];
-        const [val2, cnt2, x2, y2] = maxArr[list[1]];
+        const [val1, x1, y1] = maxArr[list[0]];
+        const [val2, x2, y2] = maxArr[list[1]];
 
-        if (isOverlay(x1, y1, cnt1, x2, y2)) return;
+        if (isOverlay(x1, y1, x2, y2)) return;
         maxVal = Math.max(val1+val2, maxVal);
     } else {
         dfs(level+1, [...list, level])
@@ -55,4 +59,3 @@ const dfs = (level, list) => {
 
 dfs(0,[])
 console.log(maxVal)
-// 조합해서 최댓값을 찾는다 (겹치면 패스)
