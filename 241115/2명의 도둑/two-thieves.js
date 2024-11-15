@@ -28,9 +28,9 @@ for (let x = 0; x < n; x++) {
         let weight = 0;
         for (let yPlus = y; yPlus < y+m; yPlus++) {
             if(yPlus >= n) break;
-            if (weight + arr[x][yPlus] > c) break;
+            if (weight + arr[x][yPlus] > c) continue;
+            cnt = yPlus - y + 1;
             weight += arr[x][yPlus]
-            cnt += 1;
             cost += Math.pow(arr[x][yPlus], 2);
         }
         maxArr.push([cost, cnt, x, y])
