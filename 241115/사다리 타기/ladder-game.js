@@ -28,10 +28,11 @@ const getRes = (line) => {
 }
 
 const dfs = (level, arr) => {
-    if (level === lineArr.length-1) {
+    if (level === lineArr.length) {
         if (arr.length === lineArr.length) return;
-        
-        if (getRes(arr.map(v => lineArr[v])) === criteria) {
+
+        const res = getRes(arr.map(v => lineArr[v]));
+        if (res === criteria) {
             minCnt = Math.min(minCnt, arr.length);
         }
     } else {
