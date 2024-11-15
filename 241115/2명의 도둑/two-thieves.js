@@ -44,7 +44,6 @@ let maxVal = 0;
 
 // 조합해서 최댓값을 찾는다 (겹치면 패스)
 const dfs = (level, list) => {
-    if (level === maxArr.length) return;
     if (list.length === 2) {
         const [val1, x1, y1] = maxArr[list[0]];
         const [val2, x2, y2] = maxArr[list[1]];
@@ -52,6 +51,7 @@ const dfs = (level, list) => {
         if (isOverlay(x1, y1, x2, y2)) return;
         maxVal = Math.max(val1+val2, maxVal);
     } else {
+        if (level === maxArr.length) return;
         dfs(level+1, [...list, level])
         dfs(level+1, [...list])
     }
