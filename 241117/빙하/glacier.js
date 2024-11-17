@@ -53,7 +53,7 @@ const findInner = () => {
                     arr[newX][newY] = 0;
                     countMap.has(level) ? countMap.set(level, countMap.get(level)+1) : countMap.set(level,1);
                 } else {
-                    queue.push([newX,newY,level])
+                    queue.unshift([newX,newY,level])
                 }
             }
         }
