@@ -40,15 +40,14 @@ const findCount = (n) => {
     const queue = [[n, 0]];
     while (queue.length) {
         const [val, cnt] = queue.shift();
-        
+
         if (val === 1) return minCnt = cnt;
         if (val === 2) return minCnt = cnt+1;
 
         if (val % 3 === 0) {
             queue.push([val/3, cnt+1])
-        } else if (val % 2 === 0) {
-            queue.push([val/2, cnt+1])
         } else {
+            if (val % 2 === 0) queue.push([val/2, cnt+1])
             if ((val + 1) % 3 === 0) {
                 queue.push([val+1, cnt+1])
             } else {
