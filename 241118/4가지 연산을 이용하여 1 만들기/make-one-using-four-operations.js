@@ -12,47 +12,31 @@ const num = Number(fs.readFileSync(0).toString().trim())
 
 let minCnt = Number.MAX_SAFE_INTEGER;
 
-const calc = (mode, num) => {
-    let isAble = true;
-    let calcNum = num;
-
-    if (mode === 0) {
-        if (calcNum % 3 === 0) {
-            calcNum /= 3
-        } else {
-            isAble = false;
-        }
-    } else if (mode === 1) {
-        if (calcNum % 2 === 0) {
-            calcNum /= 2
-        } else {
-            isAble = false;
-        }
-    } else if (mode === 2) {
-        calcNum -= 1
-    } else {
-        calcNum += 1
-    }
-    return [isAble, calcNum]
-}
-
 const findCount = (n) => {
     const queue = [[n, 0]];
+    const visited = new Set();
+    visited.add(n);
+
     while (queue.length) {
         const [val, cnt] = queue.shift();
-        
         if (val === 1) return minCnt = cnt;
-        if (val === 2 || val === 3) return minCnt = cnt+1;
 
-        if (val % 3 === 0) {
-            queue.push([val/3, cnt+1])
-        } else {
-            if (val % 2 === 0) queue.push([val/2, cnt+1])
-            if ((val + 1) % 3 === 0) {
-                queue.push([val+1, cnt+1])
-            } else {
-                queue.push([val-1, cnt+1])
-            }
+        // 가능한 연산 순서대로 큐에 추가
+        if (val % 3 === 0 && !visited.has(val / 3)) {
+            queue.push([val / 3, cnt + 1]);
+            visited.add(val / 3);
+        }
+        if (val % 2 === 0 && !visited.has(val / 2)) {
+            queue.push([val / 2, cnt + 1]);
+            visited.add(val / 2);
+        }
+        if (!visited.has(val - 1)) {
+            queue.push([val - 1, cnt + 1]);
+            visited.add(val - 1);
+        }
+        if (!visited.has(val + 1)) {
+            queue.push([val + 1, cnt + 1]);
+            visited.add(val + 1);
         }
     }
 }
