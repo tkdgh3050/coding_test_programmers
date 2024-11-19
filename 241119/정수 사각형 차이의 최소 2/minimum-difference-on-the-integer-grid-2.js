@@ -31,10 +31,17 @@ const changeLimit = (big, small, now) => {
 const getLimit = (big1, small1, big2, small2, now) => {
     const one = changeLimit(big1,small1,now);
     const two = changeLimit(big2, small2, now);
+    
     if (getDiff(one) > getDiff(two)) {
         return two;
-    } else {
+    } else if (getDiff(one) < getDiff(two)) {
         return one;
+    } else {
+        if (big1 > big2) {
+            return two;
+        } else {
+            return one;
+        }
     }
 }
 
@@ -50,4 +57,5 @@ const findMin = () => {
 
 init();
 findMin();
+
 console.log(getDiff(dp[n-1][n-1]))
