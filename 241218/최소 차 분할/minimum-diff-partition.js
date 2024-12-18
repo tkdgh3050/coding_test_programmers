@@ -5,17 +5,16 @@ const n = Number(info);
 const arr = data.trim().split(' ').map(Number);
 
 let answer = Number.MAX_SAFE_INTEGER;
-const dp = Array.from({length: n}, () => 0);
+const total = arr.reduce((a,c) => a+c,0);
 
-arr.sort((a,b) => a-b)
-dp[0] = arr[0];
-
-for (let idx = 1; idx < n; idx++) {
-    dp[idx] = dp[idx-1] + arr[idx]
+function dfs(sum, now) {
+    if (now === n) {
+        answer = Math.min(answer, Math.abs(total - 2*sum))
+        return;
+    }
+    dfs(sum + arr[now], now+1)
+    dfs(sum, now+1)
 }
 
-for (let idx = 0; idx < n-1; idx++) {
-    answer = Math.min(answer, Math.abs(dp[n-1] - 2* dp[idx]))
-}
-
+dfs(0,0)
 console.log(answer)
