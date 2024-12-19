@@ -7,6 +7,7 @@ const sum = arr.reduce((a,c) => a+c, 0)
 let max = 0;
 
 function dfs(level, div) {
+    if (max !== 0 && div[2] > max) return;
     if (div[0] > sum/2 || div[1] > sum/2) return;
     if (level === n) {
         if (div[0] === div[1]) max = Math.max(max, div[0])        
