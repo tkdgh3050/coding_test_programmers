@@ -13,8 +13,12 @@ for (let val of arr) {
     } else {
         const tempMap = new Map();
         for (let dp of dpMap.keys()) {
-            tempMap.has(dp+val) ? tempMap.set(dp+val, dpMap.get(dp) + tempMap.get(dp+val)) : tempMap.set(dp+val, dpMap.get(dp))
-            tempMap.has(dp-val) ? tempMap.set(dp-val, dpMap.get(dp) + tempMap.get(dp-val)) : tempMap.set(dp-val, dpMap.get(dp))
+            if (dp+val <= 20) {
+                tempMap.has(dp+val) ? tempMap.set(dp+val, dpMap.get(dp) + tempMap.get(dp+val)) : tempMap.set(dp+val, dpMap.get(dp))
+            } 
+            if (dp-val >= -20) {
+                tempMap.has(dp-val) ? tempMap.set(dp-val, dpMap.get(dp) + tempMap.get(dp-val)) : tempMap.set(dp-val, dpMap.get(dp))
+            }
         }
         dpMap = tempMap;
     }
