@@ -9,7 +9,7 @@ let dpMap = new Map();
 for (let val of arr) {
     if(dpMap.size === 0) {
         dpMap.set(val, 1)
-        dpMap.set(-val, 1)
+        dpMap.has(-val) ? dpMap.set(-val, dpMap.get(-val) + 1) : dpMap.set(-val, 1)
     } else {
         const tempMap = new Map();
         for (let dp of dpMap.keys()) {
