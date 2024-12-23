@@ -8,8 +8,8 @@ let dpMap = new Map();
 
 for (let val of arr) {
     if(dpMap.size === 0) {
-        dpMap.set(val, 1)
-        dpMap.has(-val) ? dpMap.set(-val, dpMap.get(-val) + 1) : dpMap.set(-val, 1)
+        dpMap.set(val, 1n)
+        dpMap.has(-val) ? dpMap.set(-val, dpMap.get(-val) + 1n) : dpMap.set(-val, 1n)
     } else {
         const tempMap = new Map();
         for (let dp of dpMap.keys()) {
@@ -24,4 +24,4 @@ for (let val of arr) {
     }
 }
 
-console.log(dpMap.has(m) ? dpMap.get(m) : 0)
+console.log(dpMap.has(m) ? dpMap.get(m).toString() : 0)
